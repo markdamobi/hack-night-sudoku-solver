@@ -47,7 +47,7 @@ class Board
 
   ### TODO: think about this one...
   def solve_iterative 
-    ## iterative solution is nice and it works well. but I'll think later if I can solve this in a different way. 
+    ## the recursive solution above is nice and it works well. but I'll think later if I can solve this in a different way using iteration. 
   end
 
   ## this scans grid and sets up possible values for cells and puts in values that already determined. 

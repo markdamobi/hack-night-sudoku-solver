@@ -10,11 +10,10 @@ describe 'Board' do
 
 	end
 
-	describe '#attempt_easy_solve' do 
+	describe '#pre-check' do 
 		## basically iterates over all items in the board over and over again until an iteration causes no state change. 
 		## this indicates that more strategy will then be needed. 
-		## this method may not work for hard puzzles but might be sufficient for easy ones. 
-		it 'attempts to solve board by filling in obvious missing values and reducing number of possible values for cell. no guessing. ' do 
+		it 'fills in values that are obvious. the sets the posibble values. ' do 
 
 		end
 	end 
@@ -31,37 +30,17 @@ describe 'Board' do
 		end
 	end 
 
-	describle '#scan cell' do 
+	describle '#resolve_cell' do 
 		it 'does a scan through for a given cell and fixes in value or updates possible values' do 
 
 		end
+	end	
+
+	describle '#resolve_cells' do 
+		it 'does 1 scan through all cells and indicates if any was made along the way.' do 
+
+		end
 	end
-
-	# describe '#solve_row' do 
-	# 	it 'does 1 scan through a give row and tries to fix in values.' do 
-
-	# 	end
-	# end
-
-	# describe
-
-	describe '#rows_solved?' do 
-		it 'determines if all rows in the board are solved' do 
-
-		end
-	end 	
-
-	describe '#columns_solved?' do 
-		it 'determines if all columns in the board are solved' do 
-
-		end
-	end 	
-
-	describe '#boxes_solved?' do 
-		it 'determines if all columns in the board are solved' do 
-
-		end
-	end 
 
 	describe '#solved?' do 
 		it 'determines if the sudoku board is completely solved' do 
@@ -84,13 +63,7 @@ describe 'Board' do
 			end
 		end
 
-		describe '#array_format' do 
-			it 'returns the values in the boars as a 2-d array' do
-
-			end
-		end
-
-		describe '#string_rep' do
+		describe '#unique_str' do
 			## this can be useful to determine if something in the  board was changed after an iteration.  
 			it 'returns a string representation of the board state including the state of possible values for a cell.' do 
 

@@ -20,6 +20,7 @@ class Board
 		end
 	end
 
+	## this just attempts to put in value to a cell, or reduce the number of possible_values. 
 	def resolve_cell(cell) 
 		return if cell.value
 		box_cells = boxes[cell.box]
@@ -47,9 +48,9 @@ class Board
 		end
 	end
 
-	def main_solve
+	def solve
 		pre_check  
-		return if solved?
+		return if solved? ## highly unlikely. 
 		solve_recursive(cells.select{ |cell| !cell.value })
 	end 
 
@@ -121,6 +122,38 @@ class Board
 
 	def unique_str
 		cells.map(&:unique_str).join("|")
+	end
+
+	def pretty_print
+		(0..2).each do |i|
+			r = ""
+			r << rows[i][0..2].map{|c| c.value || "_"}.join( " ")
+			r << " | "
+			r << rows[i][3..5].map{|c| c.value || "_"}.join( " ")
+			r << " | "
+			r << rows[i][6..8].map{|c| c.value || "_"}.join( " ")
+			puts r
+		end
+		puts "====================="
+		(3..5).each do |i|
+			r = ""
+			r << rows[i][0..2].map{|c| c.value || "_"}.join( " ")
+			r << " | "
+			r << rows[i][3..5].map{|c| c.value || "_"}.join( " ")
+			r << " | "
+			r << rows[i][6..8].map{|c| c.value || "_"}.join( " ")
+			puts r
+		end
+		puts "====================="
+		(6..8).each do |i|
+			r = ""
+			r << rows[i][0..2].map{|c| c.value || "_"}.join( " ")
+			r << " | "
+			r << rows[i][3..5].map{|c| c.value || "_"}.join( " ")
+			r << " | "
+			r << rows[i][6..8].map{|c| c.value || "_"}.join( " ")
+			puts r
+		end
 	end
 
 end

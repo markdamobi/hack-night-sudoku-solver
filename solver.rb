@@ -20,8 +20,12 @@ def solve_puzzles
 
 	puzzles.each do |puzzle|
 		board = Board.new(File.join('puzzles', puzzle))
-		board.main_solve
-		puts "#{puzzle} -> #{board.solved?}"
+		board.pretty_print
+		board.solve
+
+		puts "\n\n"
+		board.pretty_print
+		puts "puzzle: \n#{puzzle}, solved: #{board.solved?}\n\n"
 	end
 
 end

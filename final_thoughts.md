@@ -1,0 +1,3 @@
+- solution works fine. I used a recursive approach. Solving all the puzzles runs faster than I expected. 
+- I'll attempt this again at a later date to see if I can do it with a different strategy besides recursion. 
+- my Cell class has test coverage. But my Board class doesn't I'll add some more tests later. 

@@ -20,36 +20,8 @@ class Board
 		end
 	end
 
-	## this just attempts to put in value to a cell, or reduce the number of possible_values. 
-	def resolve_cell(cell) 
-		return if cell.value
-		box_cells = boxes[cell.box]
-		row_cells = rows[cell.y]
-		col_cells = columns[cell.x]
-		other_cell_values = Set.new(box_cells.map(&:value) + row_cells.map(&:value) + col_cells.map(&:value)).delete nil
-		cell.possible_values -= other_cell_values
-		cell.value = cell.possible_values.first if cell.possible_values.size == 1
-		cell
-	end
-
-	def resolve_cells
-		orig_uniq_str = unique_str
-		cells.each do |cell|
-			resolve_cell(cell)
-		end
-		orig_uniq_str != unique_str
-	end
-
-	## this scans grid and sets up possible values for cells and puts in values that already determined. 
-	def pre_check
-		state_changed = true
-		while state_changed
-			state_changed = resolve_cells
-		end
-	end
-
 	def solve
-		pre_check  
+		pre_check  ## doing a pre_check first makes the recursion more efficient because it reduces amount of work for recursion. 
 		return if solved? ## highly unlikely. 
 		solve_recursive(cells.select{ |cell| !cell.value })
 	end 
@@ -73,6 +45,41 @@ class Board
 		end
 	end
 
+	### TODO: think about this one...
+	def solve_iterative 
+		## iterative solution is nice and it works well. but I'll think later if I can solve this in a different way. 
+	end
+
+	## this scans grid and sets up possible values for cells and puts in values that already determined. 
+	def pre_check
+		state_changed = true
+		while state_changed
+			state_changed = resolve_cells
+		end
+	end
+
+	### this does one pass through the cells and setup possible_values and values where possible. 
+	def resolve_cells
+		orig_uniq_str = unique_str
+		cells.each do |cell|
+			resolve_cell(cell)
+		end
+		orig_uniq_str != unique_str
+	end
+
+	## this just attempts to put in value to a cell, or reduce the number of possible_values. 
+	def resolve_cell(cell) 
+		return if cell.value
+		box_cells = boxes[cell.box]
+		row_cells = rows[cell.y]
+		col_cells = columns[cell.x]
+		other_cell_values = Set.new(box_cells.map(&:value) + row_cells.map(&:value) + col_cells.map(&:value)).delete nil
+		cell.possible_values -= other_cell_values
+		cell.value = cell.possible_values.first if cell.possible_values.size == 1
+		cell
+	end
+
+	##TODO: refactor
 	def conflict?(cell)
 		return false if !cell.value 
 		return true if boxes[cell.box].any?{|c| c.value == cell.value && c.object_id != cell.object_id}
@@ -85,6 +92,7 @@ class Board
 		valid? && filled?
 	end
 
+	## TODO: refactor
 	def valid?
 		boxes.each do |b, bcells|
 			vals = bcells.map(&:value).compact 
@@ -125,6 +133,7 @@ class Board
 		cells.map(&:unique_str).join("|")
 	end
 
+	## TODO: refactor/make better. 
 	def pretty_print
 		(0..2).each do |i|
 			r = ""

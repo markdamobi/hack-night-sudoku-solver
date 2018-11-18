@@ -10,7 +10,7 @@ describe 'Board' do
 
 	end
 
-	describe '#pre-check' do 
+	describe '#pre_check' do 
 		## basically iterates over all items in the board over and over again until an iteration causes no state change. 
 		## this indicates that more strategy will then be needed. 
 		it 'fills in values that are obvious. the sets the posibble values. ' do 

@@ -50,4 +50,13 @@ describe 'Cell' do
 		end
 	end
 
+	describe '#unique_str' do 
+		it 'returns a string representation of the state of a cell. value + possible values. ' do 
+			cell = Cell.new(x: 0, y: 0)
+			expect(cell.unique_str).to eql "0+[123456789]"
+			cell.possible_values = Set.new([1,2,3,5])
+			expect(cell.unique_str).to eql "0+[1235]"
+		end		
+	end
+
 end

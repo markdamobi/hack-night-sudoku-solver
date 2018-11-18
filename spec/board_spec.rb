@@ -1,8 +1,15 @@
 require_relative '../board' 
+require 'byebug'
+
+
+### Tests are incomplete. 
+### will fill them in later. 
+### need to figure out why I can't read the file. 
+
 
 describe 'Board' do 
-	let!(:ez1){ "../easy_01.txt" }
-	let!(:board1) { Board.new(file: ez1)}
+	let!(:board1) { Board.new(file: "./../puzzles/easy_01.txt")}
+	let!(:empty_board) { Board.new("puzzles/empty.txt")}
 	describe '#initialize' do 
 		it 'takes a file and initalizes board appropriately. filling in cells and other properties.' do 
 
@@ -10,33 +17,39 @@ describe 'Board' do
 
 	end
 
-	describe '#pre_check' do 
-		## basically iterates over all items in the board over and over again until an iteration causes no state change. 
-		## this indicates that more strategy will then be needed. 
-		it 'fills in values that are obvious. the sets the posibble values. ' do 
+	# describe '#pre_check' do 
+	# 	## basically iterates over all items in the board over and over again until an iteration causes no state change. 
+	# 	## this indicates that more strategy will then be needed. 
+	# 	it 'fills in values that are obvious. the sets the posibble values. ' do 
 
-		end
-	end 
+	# 	end
+	# end 
 
 	describe '#solve' do 
-		it 'solves any solvable puzzle' do 
-
+		it 'solves any solvable puzzle' do
+			board1.solve
+			expected_solution = ["325618497","716924385","984537612","569482731","142375869","837169254","473851926","258796143","691243578"]
+			expect(board1.file_format).to eql expected_solution.join("\n")
 		end
 	end
 
 	describe '#valid?' do 
 		it 'determines if the board is in a valid state and there are no conflicts.' do 
-
+			expect(empty_board.valid?).to eql true
+			empty_board.cells[1].value = 5 
+			expect(empty_board.valid?).to eql true
+			empty_board.cells[2].value = 5
+			expect(empty_board.valid?).to eql false
 		end
 	end 
 
-	describle '#resolve_cell' do 
+	describe '#resolve_cell' do 
 		it 'does a scan through for a given cell and fixes in value or updates possible values' do 
 
 		end
 	end	
 
-	describle '#resolve_cells' do 
+	describe '#resolve_cells' do 
 		it 'does 1 scan through all cells and indicates if any was made along the way.' do 
 
 		end
@@ -64,7 +77,7 @@ describe 'Board' do
 		end
 
 		describe '#unique_str' do
-			## this can be useful to determine if something in the  board was changed after an iteration.  
+			## this is useful to determine if something in the board was changed after an iteration.  
 			it 'returns a string representation of the board state including the state of possible values for a cell.' do 
 
 			end

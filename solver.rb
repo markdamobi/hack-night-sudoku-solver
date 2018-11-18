@@ -3,7 +3,6 @@ require_relative 'board'
 require 'byebug'
 
 
-B2 = Board.new('puzzles/easy_02.txt')
 def solve_puzzles
 
 	ez = ['easy_01.txt', 'easy_02.txt', 'easy_03.txt', 'easy_04.txt']

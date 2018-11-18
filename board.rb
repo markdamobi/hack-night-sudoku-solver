@@ -64,6 +64,7 @@ class Board
 			cell.possible_values.each do |v|
 				cell.value = v 
 				if !conflict?(cell) && solve_recursive(unsolved_cells[1..-1])
+					cell.possible_values = Set.new([v]) ## this line changes nothing in calculation. just to preseve the possible values after cell is resolved. 
 					return true 
 				end
 			end

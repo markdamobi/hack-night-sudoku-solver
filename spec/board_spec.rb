@@ -31,6 +31,20 @@ describe 'Board' do
 		end
 	end 
 
+	describle '#scan cell' do 
+		it 'does a scan through for a given cell and fixes in value or updates possible values' do 
+
+		end
+	end
+
+	# describe '#solve_row' do 
+	# 	it 'does 1 scan through a give row and tries to fix in values.' do 
+
+	# 	end
+	# end
+
+	# describe
+
 	describe '#rows_solved?' do 
 		it 'determines if all rows in the board are solved' do 
 

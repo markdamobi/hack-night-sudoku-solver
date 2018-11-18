@@ -144,7 +144,7 @@ class Board
       r << rows[i][6..8].map{|c| c.value || "_"}.join( " ")
       puts r
     end
-    puts "====================="
+    puts "---------------------"
     (3..5).each do |i|
       r = ""
       r << rows[i][0..2].map{|c| c.value || "_"}.join( " ")
@@ -154,7 +154,7 @@ class Board
       r << rows[i][6..8].map{|c| c.value || "_"}.join( " ")
       puts r
     end
-    puts "====================="
+    puts "---------------------"
     (6..8).each do |i|
       r = ""
       r << rows[i][0..2].map{|c| c.value || "_"}.join( " ")
